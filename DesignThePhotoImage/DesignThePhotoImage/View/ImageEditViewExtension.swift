@@ -13,8 +13,6 @@ extension ImageEditView {
     typealias CompletionHandler = (UIImage) -> Void
     
     func applyFilter(to image: UIImage, completion: @escaping CompletionHandler) {
-        // Apply your desired filter to the image
-        // For demonstration purposes, we'll just add text and overlay a color
         
         let renderer = UIGraphicsImageRenderer(size: image.size)
         let filteredImage = renderer.image { context in
@@ -38,8 +36,7 @@ extension ImageEditView {
             
             // Add color overlay
             let colorOverlayRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
-           // UIColor.init(hexString: colorFilter)?.withAlphaComponent(0.5).setFill()
-            UIColor.blue.withAlphaComponent(0.5).setFill()
+            UIColor.init(hexString: colorFilter)?.withAlphaComponent(0.5).setFill()
             UIRectFillUsingBlendMode(colorOverlayRect, .multiply)
         }
         
@@ -47,19 +44,48 @@ extension ImageEditView {
     }
     
     func saveToPhotos(image: UIImage) {
-        PHPhotoLibrary.requestAuthorization { status in
-            guard status == .authorized else { return }
-
-            PHPhotoLibrary.shared().performChanges {
-                let request = PHAssetChangeRequest.creationRequestForAsset(from: image)
-                request.creationDate = Date()
-            } completionHandler: { success, error in
-                if success {
-                    print("Image saved to Photos successfully.")
-                } else {
-                    print("Error saving image to Photos: \(error?.localizedDescription ?? "Unknown error")")
+        if let resizeImage = resizeImage(image: image, scaleFactor: 0.75) {
+            
+            PHPhotoLibrary.requestAuthorization { status in
+                guard status == .authorized else { return }
+                
+                PHPhotoLibrary.shared().performChanges {
+                    let request = PHAssetChangeRequest.creationRequestForAsset(from: resizeImage)
+                    request.creationDate = Date()
+                } completionHandler: { success, error in
+                    if success {
+                        print("Image saved to Photos successfully.")
+                        self.showingImagePicker = false
+                    } else {
+                         print("Error saving image to Photos: \(error?.localizedDescription ?? "Unknown error")")
+                    }
                 }
             }
+        } else {
+            print("Failed to resize image.")
         }
     }
+    
+    private func resizeImage(image: UIImage, scaleFactor: CGFloat) -> UIImage? {
+        let newSize = CGSize(width: image.size.width * scaleFactor, height: image.size.height * scaleFactor)
+        let rect = CGRect(origin: .zero, size: newSize)
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        defer { UIGraphicsEndImageContext() }
+        
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        
+        // Set interpolation quality to high to ensure a smoother resizing
+        context.interpolationQuality = .high
+        
+        image.draw(in: rect)
+        
+        guard let resizedImage = UIGraphicsGetImageFromCurrentImageContext() else {
+            return nil
+        }
+        return resizedImage
+    }
 }
+

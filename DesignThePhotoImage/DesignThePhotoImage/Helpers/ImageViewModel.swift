@@ -7,14 +7,16 @@
 
 import Foundation
 
-struct ImagesColorModel {
-    static var imageColorTypeArray: [String: String] = ["Original": "#FEB07C"
-                                      ,"Vivid": "#F9CE90"
-                                       ,"VividWarm" : "#F9F1DA"
-                                       , "VividCool": "#B8D1C0"
-                                       , "DRAMATIC": "#F5DDDD"
-                                       , "DRAMATICWARM" : "#C2B2B4"]
-    
-    
-    
+struct ImagesColorModel: Hashable, Observable {
+    let id = UUID()
+    let text: String
+    let hexColor: String
+    var isHidden: Bool = true
 }
+
+let imageColorCollection = [ImagesColorModel(text: "Original", hexColor: "#FEB07C")
+                            , ImagesColorModel(text: "Vivid", hexColor: "#F9CE90")
+                            , ImagesColorModel(text: "VividWarm", hexColor: "#F9F1DA")
+                            , ImagesColorModel(text: "VividCool", hexColor: "#B8D1C0")
+                            , ImagesColorModel(text: "DRAMATIC", hexColor: "#F5DDDD")
+                            , ImagesColorModel(text: "DRAMATICWARM", hexColor: "#C2B2B4")]

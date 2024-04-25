@@ -9,36 +9,25 @@ import SwiftUI
 
 struct ImageEditView: View {
     
-    //let capturedImage: UIImage
     @State var caption: String = ""
     @State private var isEditing: Bool = false
-    @State var image: UIImage
-    @Binding var isDetailViewActive: Bool
+    @Binding var image: UIImage?
+    @Binding var showingImagePicker: Bool
+    @State var colorFilter: String = ""
     
-    @State var colorFilter: String = "#FFFFFF"
-    
-    
-    init(caption: String, isEditing: Bool
-         , image: UIImage
-         , isDetailViewActive: Binding<Bool>
-    , colorFilter: String) {
-        self.caption = caption
-        self.isEditing = isEditing
-        self.image = image
-        _isDetailViewActive = isDetailViewActive
-        self.colorFilter = colorFilter
-    }
+    @State private var isShareSheetPresented = false
+
     var body: some View {
         
         GeometryReader { geometry in
             VStack {
                 ZStack(alignment: .bottom) {
-                    Image(uiImage: image)
+                    Image(uiImage: image!)
                         .resizable()
-                        .frame(width: geometry.size.width)
+                        .aspectRatio(contentMode: .fit)
                         .overlay {
                             Rectangle()
-                                .fill(Color.init(hex: colorFilter).opacity(0.6))
+                                .fill((colorFilter.isEmpty) ? Color.clear : Color.init(hex: colorFilter).opacity(0.2))
                         }
                     
                     if isEditing {
@@ -52,7 +41,7 @@ struct ImageEditView: View {
                 }
                 
                 ColorFilterStyle(capturedImage: image
-                                 , colorFilter: $colorFilter)
+                                 , colorFilter: $colorFilter, selectedColor: "")
                 
                 HStack(spacing: 40) {
                     //Add text
@@ -60,26 +49,28 @@ struct ImageEditView: View {
                         isEditing = !isEditing
                     }) {
                         Image(systemName: "note.text.badge.plus") .foregroundColor(.cyan)
-                            .font(.system(size: 50))
+                            .font(.system(size: 25))
                     }
                     
                     //Save
                     Button(action: {
-                        self.applyFilter(to: image) { updatedImage in
+                        self.applyFilter(to: image!) { updatedImage in
                             self.image = updatedImage
-                            self.saveToPhotos(image: self.image)
-                            isDetailViewActive = true
+                            self.saveToPhotos(image: self.image!)
                         }
                     }) {
                         Image(systemName: "square.and.arrow.down.on.square.fill") .foregroundColor(.cyan)
-                            .font(.system(size: 40))
+                            .font(.system(size: 20))
                     }
                     //Share
                     Button(action: {
-                        
+                        self.isShareSheetPresented.toggle()
                     }) {
                         Image(systemName: "square.and.arrow.up") .foregroundColor(.cyan)
-                            .font(.system(size: 40))
+                            .font(.system(size: 20))
+                    }.sheet(isPresented: $isShareSheetPresented) {
+                        // Content to share
+                        ActivityView(activityItems: [image])
                     }
                 }
             }
@@ -93,9 +84,7 @@ struct ImageEditView: View {
 
 struct ImageEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageEditView(caption: ""
-                      , isEditing: false
-                      , image: UIImage(named: "image1")!, isDetailViewActive: .constant(false)
-                      , colorFilter: "")
+        ImageEditView(image: .constant(UIImage(named: "image1")!)
+                      , showingImagePicker: .constant(false))
     }
 }

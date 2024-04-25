@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		683997592BDAD6D8009FBD27 /* ShareButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683997582BDAD6D8009FBD27 /* ShareButtonView.swift */; };
 		68F883E72BD8E47400E8B4A0 /* DesignThePhotoImageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F883E62BD8E47400E8B4A0 /* DesignThePhotoImageApp.swift */; };
 		68F883E92BD8E47400E8B4A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F883E82BD8E47400E8B4A0 /* ContentView.swift */; };
 		68F883EB2BD8E47500E8B4A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68F883EA2BD8E47500E8B4A0 /* Assets.xcassets */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		683997572BDA7AC4009FBD27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		683997582BDAD6D8009FBD27 /* ShareButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareButtonView.swift; sourceTree = "<group>"; };
 		68F883E32BD8E47400E8B4A0 /* DesignThePhotoImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesignThePhotoImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68F883E62BD8E47400E8B4A0 /* DesignThePhotoImageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignThePhotoImageApp.swift; sourceTree = "<group>"; };
 		68F883E82BD8E47400E8B4A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 		68F883E52BD8E47400E8B4A0 /* DesignThePhotoImage */ = {
 			isa = PBXGroup;
 			children = (
+				683997572BDA7AC4009FBD27 /* Info.plist */,
 				68F884042BDA04C800E8B4A0 /* ViewModel */,
 				68F884012BD9FE5E00E8B4A0 /* Helpers */,
 				68F883FE2BD9842900E8B4A0 /* View */,
@@ -88,6 +92,7 @@
 				68F883FC2BD9811A00E8B4A0 /* ColorFilterStyleView.swift */,
 				68F883F42BD8EDC400E8B4A0 /* ImageEditView.swift */,
 				68F883FF2BD9846700E8B4A0 /* ImageEditViewExtension.swift */,
+				683997582BDAD6D8009FBD27 /* ShareButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				68F883FD2BD9811A00E8B4A0 /* ColorFilterStyleView.swift in Sources */,
 				68F883E72BD8E47400E8B4A0 /* DesignThePhotoImageApp.swift in Sources */,
 				68F883F72BD9116700E8B4A0 /* ImageViewModel.swift in Sources */,
+				683997592BDAD6D8009FBD27 /* ShareButtonView.swift in Sources */,
 				68F883F52BD8EDC400E8B4A0 /* ImageEditView.swift in Sources */,
 				68F884032BD9FE6E00E8B4A0 /* ColorHelpers.swift in Sources */,
 			);
@@ -315,10 +321,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DesignThePhotoImage/Preview Content\"";
+				DEVELOPMENT_TEAM = 9V99HK3LZY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DesignThePhotoImage/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to the camera.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to the photo library.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app requires to save to gallery.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to the gallery.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -345,10 +354,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DesignThePhotoImage/Preview Content\"";
+				DEVELOPMENT_TEAM = 9V99HK3LZY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DesignThePhotoImage/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to the camera.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to the photo library.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app requires to save to gallery.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires access to the gallery.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
