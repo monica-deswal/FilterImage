@@ -15,7 +15,7 @@ struct ColorFilterStyle: View {
     var body: some View {
         ScrollView(.horizontal) {
             HStack(spacing: 20) {
-                ForEach(Array(ImageViewModel.imageColorTypeArray), id: \.key) { key, value in
+                ForEach(Array(ImagesColorModel.imageColorTypeArray), id: \.key) { key, value in
                     
                     ZStack {
                         Image(uiImage: capturedImage)

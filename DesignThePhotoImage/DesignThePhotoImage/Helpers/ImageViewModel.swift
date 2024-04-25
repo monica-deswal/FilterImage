@@ -1,5 +1,5 @@
 //
-//  ImageViewModel.swift
+//  ImagesColorModel.swift
 //  DesignThePhotoImage
 //
 //  Created by Monica Deswal 1 on 24/04/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImageViewModel {
+struct ImagesColorModel {
     static var imageColorTypeArray: [String: String] = ["Original": "#FEB07C"
                                       ,"Vivid": "#F9CE90"
                                        ,"VividWarm" : "#F9F1DA"

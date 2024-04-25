@@ -67,7 +67,6 @@
 				68F884012BD9FE5E00E8B4A0 /* Helpers */,
 				68F883FE2BD9842900E8B4A0 /* View */,
 				68F883E62BD8E47400E8B4A0 /* DesignThePhotoImageApp.swift */,
-				68F883F62BD9116700E8B4A0 /* ImageViewModel.swift */,
 				68F883EA2BD8E47500E8B4A0 /* Assets.xcassets */,
 				68F883EC2BD8E47500E8B4A0 /* Preview Content */,
 			);
@@ -96,6 +95,7 @@
 		68F884012BD9FE5E00E8B4A0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				68F883F62BD9116700E8B4A0 /* ImageViewModel.swift */,
 				68F884022BD9FE6E00E8B4A0 /* ColorHelpers.swift */,
 			);
 			path = Helpers;
