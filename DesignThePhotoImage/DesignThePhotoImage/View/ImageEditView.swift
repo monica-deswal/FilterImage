@@ -41,9 +41,9 @@ struct ImageEditView: View {
                 }
                 
                 ColorFilterStyle(capturedImage: image
-                                 , colorFilter: $colorFilter, selectedColor: "")
+                                 , colorFilter: $colorFilter, selectedColor: "", selectedText: "")
                 
-                HStack(spacing: 40) {
+                HStack(spacing: 75) {
                     //Add text
                     Button(action: {
                         isEditing = !isEditing
@@ -72,6 +72,7 @@ struct ImageEditView: View {
                         // Content to share
                         ActivityView(activityItems: [image])
                     }
+                    .presentationDetents([.height(650), .large])
                 }
             }
         }
